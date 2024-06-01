@@ -7,6 +7,7 @@ import Notes from '../pages/Notes'
 import Profile from '../pages/Buttons'
 // const Charts = lazy(() => import('../pages/Charts'))
 import Trash from '../pages/Tables'
+import chatsHistory from '../pages/chatsHistory'
 import Files from '../pages/Files'
 import Chat from '../components/Chat'
 // const Modals = lazy(() => import('../pages/Modals'))
@@ -37,10 +38,10 @@ const routes = [
     path: '/profile',
     component: Profile,
   },
-  // {
-  //   path: '/charts',
-  //   component: Charts,
-  // },
+  {
+    path: '/chatsHistory',
+    component: chatsHistory,
+  },
   {
     path: '/trash',
     component: Trash,

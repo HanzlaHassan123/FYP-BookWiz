@@ -18,6 +18,7 @@ function Layout() {
   const { isSidebarOpen, closeSidebar } = useContext(SidebarContext);
   let location = useLocation();
 
+
   useEffect(() => {
     closeSidebar();
   }, [location]);
@@ -35,7 +36,7 @@ function Layout() {
 
       {/* <Forms /> */}
       <div className="flex flex-col flex-1 w-full">
-        <Header />
+        <Header  />
         <Main>
           <Suspense fallback={<ThemedSuspense />}>
             <Routes>

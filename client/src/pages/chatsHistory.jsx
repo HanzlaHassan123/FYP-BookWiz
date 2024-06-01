@@ -9,7 +9,7 @@ import PageTitle from '../Typography/PageTitle'
 import { ChatIcon, CartIcon, MoneyIcon, PeopleIcon } from '../icons'
 import RoundIcon from '../components/RoundIcon'
 import response from '../utils/demo/tableData'
-import { Button } from '@windmill/react-ui'
+import { Button} from '@windmill/react-ui'
 import Modals from './Modals'
 import { SearchIcon } from '../icons'
 
@@ -33,27 +33,24 @@ import { render } from 'react-dom'
 import CreateFolderModal from '../Modals/CreateFolderModal'
 import { Alert } from '@windmill/react-ui'
 
-function Dashboard() {
+function chatsHistory() {
   const [page, setPage] = useState(1)
   const [data, setData] = useState([])
-  const [folders, setFolders] = useState([]);
-  const [spin, setSpin] = useState(true);
+  const [folders , setFolders] = useState([]);
+  const [spin , setSpin] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  function openModal() {
+  function  openModal() {
     setIsModalOpen(true)
   }
 
-  function closeModal(newFolder) {
+  function  closeModal(newFolder) {
     console.log(newFolder)
-    if (newFolder) {
+    if(newFolder){
       setFolders(prevFolders => [...prevFolders, newFolder]);
     }
     setIsModalOpen(false)
   }
-
-
-
 
   // pagination setup
   const resultsPerPage = 10
@@ -66,8 +63,8 @@ function Dashboard() {
   const fetchFolders = async () => {
     setSpin(true);
 
-    try {
-      const res = await axios.get('/api/user/folders', {
+    try{
+      const res = await axios.get('/api/user/folders' , {
         withCredentials: true
       });
 
@@ -75,13 +72,11 @@ function Dashboard() {
       setFolders(dT);
       console.log(dT);
       setSpin(false);
-    } catch (error) {
+    }catch(error){
       console.error(error);
       setSpin(false);
     }
   }
-
-
 
   // on page change, load new sliced data
   // here you would make another server request for new data
@@ -93,52 +88,41 @@ function Dashboard() {
 
   return (
     <>
-
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}>
-
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    
         {/* <ul className="flex items-center flex-shrink-0 space-x-6"> */}
 
-        <PageTitle>My Folders</PageTitle>
-        <Button onClick={openModal} size="large">
-          Create Folder
-        </Button>
-        <CreateFolderModal isModelOpen={isModalOpen} closeModal={closeModal} />
-
-      </div>
+      <PageTitle>My Folders</PageTitle>
+      
+      <CreateFolderModal isModelOpen={isModalOpen} closeModal={closeModal}/>
+    
+    </div>
 
       {/* <!-- Cards --> */}
       <div className="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
         {spin ? 'Loading....' : (
           folders.length > 0 ?
-            (
-             folders.map((folder) => {
-                return (
-                  <InfoCard _folder={folder} >
-                    <RoundIcon
-                      icon={ChatIcon}
-                      iconColorClass="text-teal-500 dark:text-teal-100"
-                      bgColorClass="bg-teal-100 dark:bg-teal-500"
-                      className="mr-4"
-                    />
-                  </InfoCard>
-                )
-
-              }))
-            : (
-              <p className="text-gray-700 dark:text-gray-300">
-                No Folders Found
-              </p>
+          (folders.map((folder) => {
+            return (
+              <InfoCard _folder={folder}>
+                <RoundIcon
+                  icon={ChatIcon}
+                  iconColorClass="text-teal-500 dark:text-teal-100"
+                  bgColorClass="bg-teal-100 dark:bg-teal-500"
+                  className="mr-4"
+                />
+              </InfoCard>
             )
+          }))
+          : (
+            <p className="text-gray-700 dark:text-gray-300">
+              No Folders Found
+            </p>
+          )
         )}
       </div>
-
-
     </>
   )
 }
 
-export default Dashboard
+export default chatsHistory

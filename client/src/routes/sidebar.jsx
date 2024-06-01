@@ -22,11 +22,11 @@ const routes = [
     icon: 'CardsIcon',
     name: 'Profile',
   },
-  // {
-  //   path: '/app/charts',
-  //   icon: 'ChartsIcon',
-  //   name: 'Charts',
-  // },
+  {
+    path: '/app/chatsHistory',
+    icon: 'ChartsIcon',
+    name: 'Chats',
+  },
   {
     path: '/app/trash',
     icon: 'ButtonsIcon',

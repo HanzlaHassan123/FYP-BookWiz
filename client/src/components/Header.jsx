@@ -12,12 +12,15 @@ import {
   OutlineLogoutIcon,
 } from '../icons';
 import { Avatar, Badge, Input, Dropdown, DropdownItem, WindmillContext } from '@windmill/react-ui';
+import Dashboard from '../pages/Dashboard';
 
 function Header() {
   const { mode, toggleMode } = useContext(WindmillContext);
   const { toggleSidebar } = useContext(SidebarContext);
 
   const [query,setquery]=useState("");
+
+
 
   
 
@@ -36,7 +39,7 @@ function Header() {
 
 ;
 
-  console.log("query",query)
+ 
 
   const logout = () => {
     navigate('/login');
@@ -61,6 +64,11 @@ function Header() {
             </div>
             <Input className="pl-8 text-gray-700" placeholder="Search for documents"  onChange={(e)=>setquery(e.target.value)} aria-label="Search" />
           </div>
+       
+          <div style={{ display: 'none' }}>
+          <Dashboard query={query} />
+          </div>
+
         </div>
         <ul className="flex items-center flex-shrink-0 space-x-6">
           {/* <!-- Theme toggler --> */}
